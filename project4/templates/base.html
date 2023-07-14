@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tire Shop</title>
+    <link rel="icon" type="image" href={% static 'images\tire.png' %}>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap"
+        rel="stylesheet">
+        <!-- JAVASCRIPT FILES -->
+        <script src="{% static 'scripts/jquery.min.js' %}"></script>
+        <script src="{% static 'scripts/bootstrap.min.js' %}"></script>
+        <script src="{% static 'scripts/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'scripts/counter.js' %}"></script>
+        <script src="{% static 'scripts/custom.js' %}"></script>
+        <script src="{% static 'scripts/script.js' %}"></script>
+        <script defer src="https://friconix.com/cdn/friconix.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/owl.theme.default.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/tooplate-gotto-job.css' %}" rel="stylesheet">
+    <link href="{% static 'css/logic_sigup.css' %}" rel="stylesheet">
+    
+    
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="containerss">
+          <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+              <img src="{% static 'images\tire.png' %}" class="img-fluid logo-image">
+
+              <div class="d-flex flex-column">
+                  <strong class="logo-text">Tire Shop</strong>
+              </div>
+              <div class="input-group">
+
+                  <input type="text" name="job-title" id="job-title" class="form-control" placeholder="Search"
+                      required>
+              </div>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav align-items-center">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'index' %}">TIRES</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'index' %}">RIMS</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'index' %}">TPMS</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'index' %}">COMPLETE WHEELS</a>
+                  </li>
+
+                  <li class="nav-item ms-lg-auto">
+                      <a class="nav-link" href="{% url 'register' %}">Register</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link custom-btn btn" href="{% url 'login' %}">Login</a>
+                  </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                      <a class="welcome-text nav-link mb-0" href="#" id="navbarLightDropdownMenuLink" role="button" aria-expanded="false">Welcome, {{ user.username }}</a>
+                    
+                      <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+
+                          <li><a class="dropdown-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+                      </ul>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                      <a class="welcome-text nav-link mb-0" href="#" id="navbarLightDropdownMenuLink" role="button" aria-expanded="false">Welcome, Guest</a></li>
+                    {% endif %} 
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'cart' %}">
+                        <i class="fi-xnluhl-shopping-cart"></i>
+                      </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}">
+                        <i class="fi-xnluhl-shopping-cart"></i>
+                      </a>
+                    </li>
+          
+                    {% endif %}
+                    <li class="nav-item">
+                      <a class="nav-link"><i class="fi-xnluhl-phone"></i></a>
+                  </li>
+                </div>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <main>{% block content %} {% endblock %}</main>
+  
+   <footer class="site-footer ">
+    <div class="container">
+
+        <div class="site-footer-bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="d-flex align-items-center footer-content">
+                        <p class="copyright-text">Copyright © Tire Logo 2023</p>
+
+                        <ul class="footer-menu d-flex">
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Privacy Policy</a>
+                            </li>
+
+                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+</footer>
+  </body>
+</html>

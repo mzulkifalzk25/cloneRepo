@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+
+<div class="main-uppertext">
+  <h1>
+    We are the largest and most affordable tire and rim superstore in the Nordic
+    region!
+  </h1>
+</div>
+
+<div class="image-upper"></div>
+<div class="row">
+  <div class="col-md-4 text-center padd-10">
+    <h2>Products</h2>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row product-row">
+    {% for product in products %}
+    <div class="col-md-3">
+      <div class="product-card">
+        <div class="card-body">
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.description }}</p>
+          <p>Price: {{ product.price }}</p>
+          <img src="{{ product.image.url }}" alt="{{ product.title }}" />
+          <form class="add-to-cart-form">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}" />
+            <button type="submit" class="add-to-cart-btn">
+              <i class="fi-xtluxl-plus-thin"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
