@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="cart-page">
+    {% if cart_items %}
+      <h2>Your Cart</h2>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td>{{ item.product.title }}</td>
+              <td>{{ item.product.price }}</td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <td>Total:</td>
+            <td>{{ total_price }}</td>
+          </tr>
+        </tbody>
+      </table>
+    {% else %}
+      <p>Your cart is empty.</p>
+    {% endif %}
+    <form class="clear-cart-form" method="POST" action="{% url 'clear_cart' %}">
+      {% csrf_token %}
+      <button type="submit" class="clear-cart-btn custom-btn btn " style="margin-left: 570px">Clear Cart</button>
+    </form>
+
+    <form class="proceed-form" action="{{ form.action }}" method="{{ form.method }}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <p><input type="submit" class="proceed-btn custom-btn btn"  style="margin-left: 577px" value="Proceed" /></p>
+    </form>
+  </div>
+</div>
+{% endblock %}
